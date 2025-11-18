@@ -1,6 +1,6 @@
 # 🌍 CineEra: The Timelined Map of World Cinema
 
-> **Explore the world of cinema through an interactive map. Discover movies and TV shows from 195+ countries, organized chronologically by decade with real-time streaming availability.**
+> **Explore the world of cinema through an interactive map. Discover movies and TV shows from different countries, organized chronologically by decade with real-time streaming availability.**
 
 [![React](https://img.shields.io/badge/React-19.1.1-61DAFB?logo=react)](https://react.dev)
 [![Leaflet](https://img.shields.io/badge/Leaflet-1.9.4-31A049?logo=leaflet)](https://leafletjs.com)
