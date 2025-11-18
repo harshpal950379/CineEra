@@ -21,17 +21,23 @@ const MovieCard = ({ movie, isInWatchlistView = false, isShow = false }) => {
         } else {
           streamingInfo = await tmdbApi.getMovieStreamingInfo(movie.id);
         }
-        const platforms = streamingService.getStreamingPlatforms(streamingInfo);
-        setStreamingPlatforms(platforms);
+        if (streamingInfo) {
+          const platforms = streamingService.getStreamingPlatforms(streamingInfo);
+          setStreamingPlatforms(platforms);
+        }
       } catch (error) {
-        console.error('Error fetching streaming info:', error);
+        // Silently fail - streaming info is optional
+        console.debug('Streaming info not available:', error);
         setStreamingPlatforms([]);
       } finally {
         setLoadingStreaming(false);
       }
     };
 
-    fetchStreaming();
+    // Only fetch if movie has id
+    if (movie?.id) {
+      fetchStreaming();
+    }
   }, [movie.id, isShow]);
 
   const handleWatchlistToggle = () => {

@@ -1,6 +1,6 @@
 # 🌍 CineEra: The Timelined Map of World Cinema
 
-> **Explore the world of cinema through an interactive map. Discover movies and TV shows from 195+ countries, organized chronologically by decade with real-time streaming availability.**
+> > **Explore the world of cinema through an interactive map. Discover movies and TV shows from different countries, organized chronologically by decade with real-time streaming availability.**
 
 [![React](https://img.shields.io/badge/React-19.1.1-61DAFB?logo=react)](https://react.dev)
 [![Leaflet](https://img.shields.io/badge/Leaflet-1.9.4-31A049?logo=leaflet)](https://leafletjs.com)
@@ -14,8 +14,8 @@ CineEra is an innovative web application that transforms cinema discovery into a
 
 ### ✨ Key Highlights
 
-- **🗺️ Interactive World Map** - Select from 195+ countries with real-time visual feedback
-- **🎬 Comprehensive Media Library** - 150,000+ movies and TV shows from TMDb
+- **🗺️ Interactive World Map** - Select from various countries with real-time visual feedback
+ive Media Library** - 150,000+ movies and TV shows from TMDb
 - **📺 Dual Media Types** - Browse movies and web series side-by-side
 - **🎭 Genre Filtering** - Multi-select genre filters with live data updates
 - **⏰ Chronological Organization** - Content organized by decade (1980s–2020s)

@@ -7,9 +7,7 @@ export const TMDB_ACCESS_TOKEN = process.env.REACT_APP_TMDB_ACCESS_TOKEN || 'eyJ
 export const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 export const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
-export const DECADES = [
-  '1980s', '1990s', '2000s', '2010s', '2020s'
-];
+export const DECADES = ['1980s', '1990s', '2000s', '2010s', '2020s'];
 
 export const GENRES = [
   'Action', 'Adventure', 'Animation', 'Comedy', 'Crime',

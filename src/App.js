@@ -27,9 +27,12 @@ function App() {
   // Filter movies when genres change
   useEffect(() => {
     const filterMovies = async () => {
-      if (Object.keys(movies).length > 0) {
+      if (movies && Object.keys(movies).length > 0) {
         const filtered = await movieDataService.filterByGenre(movies, selectedGenres);
-        setFilteredMovies(filtered);
+        setFilteredMovies(filtered || {});
+      } else if (selectedGenres.length === 0) {
+        // If no genres selected, show all movies
+        setFilteredMovies(movies || {});
       }
     };
     
@@ -39,9 +42,12 @@ function App() {
   // Filter shows when genres change
   useEffect(() => {
     const filterShows = async () => {
-      if (Object.keys(shows).length > 0) {
+      if (shows && Object.keys(shows).length > 0) {
         const filtered = await showDataService.filterByGenre(shows, selectedGenres);
-        setFilteredShows(filtered);
+        setFilteredShows(filtered || {});
+      } else if (selectedGenres.length === 0) {
+        // If no genres selected, show all shows
+        setFilteredShows(shows || {});
       }
     };
     

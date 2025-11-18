@@ -15,20 +15,18 @@ class MovieDataService {
     if (yearNum >= 2000) return '2000s';
     if (yearNum >= 1990) return '1990s';
     if (yearNum >= 1980) return '1980s';
-    if (yearNum >= 1970) return '1970s';
-    if (yearNum >= 1960) return '1960s';
-    if (yearNum >= 1950) return '1950s';
-    if (yearNum >= 1940) return '1940s';
-    if (yearNum >= 1930) return '1930s';
-    return 'Earlier';
+    return null; // Filter out movies before 1980
   }
 
   formatMovieData(movie) {
+    const decade = this.getDecadeFromYear(movie.release_date?.split('-')[0] || '1900');
+    if (!decade) return null; // Skip movies before 1980
+    
     return {
       ...movie,
       poster_path: movie.poster_path ? `${TMDB_IMAGE_BASE_URL}${movie.poster_path}` : null,
       backdrop_path: movie.backdrop_path ? `${TMDB_IMAGE_BASE_URL}${movie.backdrop_path}` : null,
-      decade: this.getDecadeFromYear(movie.release_date?.split('-')[0] || '1900'),
+      decade: decade,
       year: movie.release_date?.split('-')[0] || 'Unknown',
       rating: movie.vote_average ? parseFloat(movie.vote_average).toFixed(1) : 'N/A'
     };
@@ -49,7 +47,7 @@ class MovieDataService {
 
     try {
       const allMovies = [];
-      const maxPages = 10; // Increased from 5 to 10 for better coverage
+      const maxPages = 15; // Increased for better coverage
 
       // 1. Fetch popular movies by country (primary source)
       console.log(`📽️ Fetching popular movies for ${countryName}...`);
@@ -57,99 +55,29 @@ class MovieDataService {
         const response = await tmdbApi.getMoviesByCountry(countryCode, page);
         
         if (response.results && response.results.length > 0) {
-          const formattedMovies = response.results.map(movie => this.formatMovieData(movie));
+          const formattedMovies = response.results.map(movie => this.formatMovieData(movie)).filter(Boolean);
           allMovies.push(...formattedMovies);
+          console.log(`✅ Fetched ${formattedMovies.length} movies on page ${page}`);
         }
 
-        if (page >= response.total_pages) break;
+        if (!response.total_pages || page >= response.total_pages) break;
         await new Promise(resolve => setTimeout(resolve, 100));
       }
 
-      // 2. Fetch highly-rated movies by country (different sort)
-      console.log(`⭐ Fetching highly-rated movies for ${countryName}...`);
-      for (let page = 1; page <= 5; page++) {
-        try {
-          const response = await tmdbApi.getPopularMoviesByCountry(countryCode, page);
-          if (response.results && response.results.length > 0) {
-            const formattedMovies = response.results.map(movie => this.formatMovieData(movie));
-            allMovies.push(...formattedMovies);
-          }
-          if (page >= response.total_pages) break;
-          await new Promise(resolve => setTimeout(resolve, 100));
-        } catch (error) {
-          console.warn(`Could not fetch highly-rated movies page ${page}:`, error.message);
-        }
-      }
-
-      // 3. Fetch movies by decade range (1980-present) for better coverage
-      console.log(`📅 Fetching movies by decade for ${countryName}...`);
-      const currentYear = new Date().getFullYear();
-      const yearRanges = [
-        { start: 1980, end: 1989 },
-        { start: 1990, end: 1999 },
-        { start: 2000, end: 2009 },
-        { start: 2010, end: 2019 },
-        { start: 2020, end: currentYear }
-      ];
-
-      for (const range of yearRanges) {
-        // Fetch multiple pages per year range
-        for (let page = 1; page <= 3; page++) {
-          try {
-            const response = await tmdbApi.getMoviesByCountryAndYear(countryCode, range.start, page);
-            if (response.results && response.results.length > 0) {
-              const formattedMovies = response.results.map(movie => this.formatMovieData(movie));
-              allMovies.push(...formattedMovies);
-            }
-            if (page >= response.total_pages) break;
-            await new Promise(resolve => setTimeout(resolve, 50));
-          } catch (error) {
-            continue;
-          }
-        }
-      }
-
-      // 4. If still no movies, try language-based fallback
-      if (allMovies.length === 0) {
-        console.log(`🌐 Trying language-based fallback for ${countryName}...`);
-        const languageMap = {
-          'China': 'zh',
-          'Japan': 'ja',
-          'France': 'fr',
-          'Germany': 'de',
-          'South Korea': 'ko',
-          'India': 'hi',
-          'Spain': 'es',
-          'Italy': 'it',
-          'Russia': 'ru',
-          'Brazil': 'pt'
-        };
-        
-        const language = languageMap[countryName];
-        if (language) {
-          for (let page = 1; page <= 3; page++) {
-            const langResponse = await tmdbApi.getMoviesByLanguage(language, page);
-            if (langResponse.results && langResponse.results.length > 0) {
-              const formattedMovies = langResponse.results.map(movie => this.formatMovieData(movie));
-              allMovies.push(...formattedMovies);
-            }
-            if (page >= langResponse.total_pages) break;
-            await new Promise(resolve => setTimeout(resolve, 100));
-          }
-        }
-      }
+      console.log(`📊 Total movies fetched for ${countryName}: ${allMovies.length}`);
 
       // Remove duplicates and organize by decade
       const uniqueMovies = this.removeDuplicates(allMovies);
-      console.log(`✅ Total unique movies fetched for ${countryName}: ${uniqueMovies.length}`);
+      console.log(`✅ Unique movies after dedup: ${uniqueMovies.length}`);
       
       const organizedMovies = this.organizeByDecade(uniqueMovies);
+      console.log(`📅 Organized into decades:`, Object.keys(organizedMovies).map(d => `${d}: ${organizedMovies[d].length}`));
       
       this.cache.set(cacheKey, organizedMovies);
       return organizedMovies;
 
     } catch (error) {
-      console.error('Error fetching movies for country:', error);
+      console.error('❌ Error fetching movies for country:', error);
       return {};
     }
   }

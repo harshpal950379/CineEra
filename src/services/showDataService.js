@@ -15,20 +15,18 @@ class ShowDataService {
     if (yearNum >= 2000) return '2000s';
     if (yearNum >= 1990) return '1990s';
     if (yearNum >= 1980) return '1980s';
-    if (yearNum >= 1970) return '1970s';
-    if (yearNum >= 1960) return '1960s';
-    if (yearNum >= 1950) return '1950s';
-    if (yearNum >= 1940) return '1940s';
-    if (yearNum >= 1930) return '1930s';
-    return 'Earlier';
+    return null; // Filter out shows before 1980
   }
 
   formatShowData(show) {
+    const decade = this.getDecadeFromYear(show.first_air_date?.split('-')[0] || '1900');
+    if (!decade) return null; // Skip shows before 1980
+    
     return {
       ...show,
       poster_path: show.poster_path ? `${TMDB_IMAGE_BASE_URL}${show.poster_path}` : null,
       backdrop_path: show.backdrop_path ? `${TMDB_IMAGE_BASE_URL}${show.backdrop_path}` : null,
-      decade: this.getDecadeFromYear(show.first_air_date?.split('-')[0] || '1900'),
+      decade: decade,
       year: show.first_air_date?.split('-')[0] || 'Unknown',
       rating: show.vote_average ? parseFloat(show.vote_average).toFixed(1) : 'N/A',
       title: show.name // Normalize to use 'title' like movies
@@ -58,7 +56,7 @@ class ShowDataService {
         const response = await tmdbApi.getShowsByCountry(countryCode, page);
         
         if (response.results && response.results.length > 0) {
-          const formattedShows = response.results.map(show => this.formatShowData(show));
+          const formattedShows = response.results.map(show => this.formatShowData(show)).filter(Boolean);
           allShows.push(...formattedShows);
         }
 
