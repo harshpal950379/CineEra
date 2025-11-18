@@ -1,0 +1,941 @@
+/* src/styles/globals.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0f0f0f;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.app-header {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-header p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* Watchlist Toggle */
+.watchlist-toggle {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.watchlist-toggle:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+}
+
+/* Main Content */
+.app-main {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* Map Section */
+.map-section {
+  margin-bottom: 3rem;
+}
+
+.map-section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.map-container {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.world-map {
+  border-radius: 15px;
+}
+
+.selected-country-info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+  border-radius: 10px;
+  color: white;
+  z-index: 1000;
+  pointer-events: all;
+}
+
+/* Country Tooltip */
+.country-tooltip {
+  background: rgba(0, 0, 0, 0.9) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 5px !important;
+  font-weight: bold;
+}
+
+/* Content Section */
+.content-section {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.section-header {
+  margin-bottom: 2rem;
+}
+
+.section-header h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Tabs Styling */
+.content-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #444;
+  justify-content: center;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.tab-button:hover {
+  opacity: 0.8;
+}
+
+.tab-button.active {
+  opacity: 1;
+  border-bottom-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+/* Content Type Toggle (Movies/Shows in Streaming) */
+.content-type-toggle {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.type-btn {
+  background: #2d2d2d;
+  color: #fff;
+  border: 2px solid #444;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.type-btn:hover {
+  opacity: 0.9;
+  border-color: #666;
+}
+
+.type-btn.active {
+  opacity: 1;
+  background: #ff6b6b;
+  border-color: #ff6b6b;
+  color: #fff;
+}
+
+/* Genre Filter */
+.genre-filter {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.genre-filter h3 {
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.genre-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.genre-button {
+  background: #3a3a3a;
+  color: white;
+  border: 2px solid transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.genre-button:hover {
+  background: #4a4a4a;
+  transform: translateY(-2px);
+}
+
+.genre-button.active {
+  background: #4ecdc4;
+  border-color: #4ecdc4;
+  color: #1a1a1a;
+  font-weight: bold;
+}
+
+.clear-filters {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.clear-filters:hover {
+  background: #ff5252;
+}
+
+/* Timeline View */
+.timeline-view h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.decade-section {
+  margin-bottom: 3rem;
+}
+
+.decade-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  border-radius: 15px;
+  color: #1a1a1a;
+}
+
+.decade-header h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.movie-count {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-weight: bold;
+}
+
+/* Movies Grid */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Movie Card */
+.movie-card {
+  background: #2a2a2a;
+  border-radius: 15px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  border-color: #4ecdc4;
+  box-shadow: 0 10px 25px rgba(78, 205, 196, 0.2);
+}
+
+/* Movie Card Wrapper */
+.movie-card-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Movie Card */
+.movie-card {
+  background: #2a2a2a;
+  border-radius: 15px 15px 0 0;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  border-bottom: none;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  border-color: #4ecdc4;
+  box-shadow: 0 10px 25px rgba(78, 205, 196, 0.2);
+}
+
+.movie-card-wrapper:hover .movie-card {
+  border-color: #4ecdc4;
+}
+
+.movie-poster {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.movie-poster img {
+  max-width: 150px;
+  height: 225px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.movie-info h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #4ecdc4;
+}
+
+.movie-year,
+.movie-genre,
+.movie-rating {
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.movie-plot {
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.movie-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.watchlist-btn {
+  flex: 1;
+  background: #4ecdc4;
+  color: #1a1a1a;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.watchlist-btn:hover {
+  background: #45b7aa;
+  transform: translateY(-1px);
+}
+
+.watchlist-btn.in-watchlist {
+  background: #ff6b6b;
+  color: white;
+}
+
+.imdb-link {
+  background: #f5c518;
+  color: #1a1a1a;
+  text-decoration: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.imdb-link:hover {
+  background: #e6b800;
+  transform: translateY(-1px);
+}
+
+/* Streaming Platforms Below Card */
+.card-streaming-info {
+  background: #2a2a2a;
+  border-radius: 0 0 15px 15px;
+  padding: 1rem 1.5rem;
+  border: 2px solid transparent;
+  border-top: 2px solid #4ecdc4;
+  transition: all 0.3s ease;
+}
+
+.movie-card-wrapper:hover .card-streaming-info {
+  border-color: #4ecdc4;
+  box-shadow: 0 10px 25px rgba(78, 205, 196, 0.2);
+}
+
+.streaming-info-label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin: 0 0 0.8rem 0;
+  color: #4ecdc4;
+}
+
+.platform-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.platform-badge {
+  display: inline-block;
+  background: #4ecdc4;
+  color: #1a1a1a;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  text-align: center;
+  padding: 3rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #3a3a3a;
+  border-top: 5px solid #4ecdc4;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Watchlist Panel */
+.watchlist-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  background: #1a1a1a;
+  border-left: 3px solid #4ecdc4;
+  z-index: 1000;
+  overflow-y: auto;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.watchlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: #2a2a2a;
+  border-bottom: 2px solid #4ecdc4;
+}
+
+.close-btn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.watchlist-content {
+  padding: 1rem;
+}
+
+.watchlist-movies {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Error Message */
+.error-message {
+  text-align: center;
+  padding: 2rem;
+  background: #ff6b6b;
+  border-radius: 10px;
+  margin: 2rem 0;
+}
+
+.error-message button {
+  background: white;
+  color: #ff6b6b;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+/* No Movies */
+.no-movies {
+  text-align: center;
+  padding: 3rem;
+  opacity: 0.7;
+}
+
+/* Footer */
+.app-footer {
+  background: #1a1a1a;
+  text-align: center;
+  padding: 1rem;
+  border-top: 1px solid #3a3a3a;
+  margin-top: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 1rem;
+  }
+  
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .watchlist-toggle {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-top: 1rem;
+  }
+  
+  .app-main {
+    padding: 1rem;
+  }
+  
+  .movies-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .movie-actions {
+    flex-direction: column;
+  }
+  
+  .watchlist-panel {
+    width: 100%;
+  }
+  
+  .genre-buttons {
+    justify-content: center;
+  }
+  
+  .decade-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .map-container {
+    height: 300px;
+  }
+  
+  .content-section {
+    padding: 1rem;
+  }
+  
+  .genre-button {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+.poster-skeleton {
+  width: 150px;
+  height: 225px;
+  background: linear-gradient(90deg, #3a3a3a 25%, #4a4a4a 50%, #3a3a3a 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.poster-placeholder {
+  width: 150px;
+  height: 225px;
+  background: #2a2a2a;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 0.9rem;
+  border: 2px dashed #4a4a4a;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Enhanced Timeline */
+.timeline-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.total-movies {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin: 0.5rem 0;
+}
+
+.active-filters {
+  font-size: 1rem;
+  color: #4ecdc4;
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 1rem;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+}
+
+.supported-countries {
+  text-align: center;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.decade-section.empty {
+  opacity: 0.5;
+}
+
+.no-movies-decade {
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Enhanced Movie Cards */
+.movie-card {
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border-radius: 15px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.movie-card:hover {
+  transform: translateY(-8px);
+  border-color: #4ecdc4;
+  box-shadow: 0 12px 30px rgba(78, 205, 196, 0.3);
+}
+
+.tmdb-link {
+  background: #01b4e4;
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.tmdb-link:hover {
+  background: #0099cc;
+  transform: translateY(-1px);
+}
+
+/* Error States */
+.error-message {
+  text-align: center;
+  padding: 3rem;
+  background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+  border-radius: 15px;
+  margin: 2rem 0;
+  color: white;
+}
+
+.error-message h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.error-message button {
+  background: white;
+  color: #ff6b6b;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.error-message button:hover {
+  background: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+/* Enhanced No Movies State */
+.no-movies {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
+  border-radius: 15px;
+  margin: 2rem 0;
+}
+
+.no-movies h3 {
+  color: #4ecdc4;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.no-movies p {
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+}
+
+.map-legend {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(42, 42, 42, 0.8);
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-color {
+  width: 20px;
+  height: 15px;
+  border-radius: 3px;
+  border: 1px solid #fff;
+}
+
+.legend-color.supported {
+  background: #3388ff;
+}
+
+.legend-color.unsupported {
+  background: #666666;
+}
+
+.legend-color.selected {
+  background: #ff7800;
+}
+
+/* Enhanced Tooltips */
+.country-tooltip {
+  background: rgba(0, 0, 0, 0.9) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 5px !important;
+  font-weight: bold;
+}
+
+/* Streaming Recommendations Section */
+.streaming-section {
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.streaming-recommendations {
+  width: 100%;
+}
+
+.streaming-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.streaming-header h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.streaming-header p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+.platform-filter {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.platform-filter h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.platform-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.platform-btn {
+  background: #3a3a3a;
+  color: white;
+  border: 2px solid transparent;
+  padding: 0.7rem 1.2rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.platform-btn:hover {
+  background: #4a4a4a;
+  border-color: #ff6b6b;
+}
+
+.platform-btn.active {
+  background: #ff6b6b;
+  border-color: #ff6b6b;
+  color: white;
+}
+
+.streaming-movies {
+  margin-top: 2rem;
+}
+
+.streaming-movie-card {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.streaming-info {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.platform-badge {
+  background: linear-gradient(45deg, #ff6b6b, #ffa500);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #aaa;
+  font-size: 1.1rem;
+}
+
+.country-tooltip-disabled {
+  background: rgba(255, 107, 107, 0.9) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 5px !important;
+  font-weight: bold;
+}
+
+.selected-country-info {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(42, 42, 42, 0.9));
+  padding: 1.5rem;
+  border-radius: 15px;
+  color: white;
+  border: 2px solid #4ecdc4;
+  backdrop-filter: blur(10px);
+}
+
+.selected-country-info h3 {
+  margin-bottom: 0.5rem;
+  color: #4ecdc4;
+}
