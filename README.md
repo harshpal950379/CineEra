@@ -14,7 +14,7 @@ CineEra is an innovative web application that transforms cinema discovery into a
 
 ### ✨ Key Highlights
 
-- **🗺️ Interactive World Map** - Select from 195+ countries with real-time visual feedback
+- **🗺️ Interactive World Map** - Select from various countries with real-time visual feedback
 - **🎬 Comprehensive Media Library** - 150,000+ movies and TV shows from TMDb
 - **📺 Dual Media Types** - Browse movies and web series side-by-side
 - **🎭 Genre Filtering** - Multi-select genre filters with live data updates
